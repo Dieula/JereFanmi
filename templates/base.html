@@ -1,0 +1,415 @@
+{% load static translator %}
+
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>Plis Kontwòl</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+	<link rel="shortcut icon" type="image/x-icon" href="" />
+	{% if request.path == '/hopitaux-proches' %}
+	<script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNiz7akKUXe2_clHlb1HVHYPsRYTGg-EQ&callback=initialize">
+    </script>
+    {% endif %}
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+	<body class="">
+		{% block search %}
+		{% endblock %}
+
+		{% block navbar %}
+		<!-- Static navbar -->
+      	<nav class="navbar navbar-default fly hidden-xs">
+	        
+          	<div class="navbar-header fly">
+            	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              		<span class="sr-only">Toggle navigation</span>
+              		<span class="icon-bar"></span>
+              		<span class="icon-bar"></span>
+              		<span class="icon-bar"></span>
+            	</button>
+            	<a class="navbar-brand" href="#">+ Kontwol</a>
+          	</div>
+	        <div id="navbar" class="navbar-collapse collapse">
+	            <ul class="nav navbar-nav">
+	              	<li class="active"><a href="#">Akèy</a></li>
+	              	<li><a href="#">Nimewo 1</a></li>
+	              	<li><a href="#">Nimewo 2</a></li>
+	              	<li class="dropdown">
+	                	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nimewo 3 <span class="caret"></span></a>
+	                	<ul class="dropdown-menu">
+	                  		<li><a href="#">Action</a></li>
+	                  		<li><a href="#">Another action</a></li>
+	                  		<li><a href="#">Something else here</a></li>
+	                  		<li role="separator" class="divider"></li>
+	                  		<li class="dropdown-header">Nav header</li>
+	                  		<li><a href="#">Separated link</a></li>
+	                  		<li><a href="#">One more separated link</a></li>
+	                	</ul>
+	              	</li>
+	            </ul>
+	            <ul class="nav navbar-nav navbar-right">
+	              	<li class="text-danger"><a href="./" style="color: #f48348" ><i class="fa fa-user"></i> Bonjour, Lorry <span class="sr-only">(current)</span></a></li>
+	              	<li><a href="../navbar-static-top/"><i class="fa fa-sign-in"></i> Konekte</a></li>
+	              	<li><a href="../navbar-fixed-top/"><i class="fa fa-user-plus"></i> Enskri</a></li>
+	            </ul>
+	        </div><!--/.nav-collapse -->  
+      	</nav>
+
+      	<div class="container-fluid visible-xs bg-success">
+	      	<div class="row" style="padding: 2px;background-color: green;color: white">
+	      		<div class="col-xs-2">
+	      			<span class="fa fa-bars fa-3x btn" id="icon-bar"></span>
+	      		</div>
+
+	      		<div class="col-xs-6 left" {% if request.user.is_authenticated %} style="font-size: 16px {% else %} style="font-size: 11px {% endif %};margin-top: 17px;">
+	      			{% if request.user.is_authenticated %}
+	      			{% block title %}
+	      			{% endblock %}
+	      			{% else %}
+	      			<a href="#KoneksyonModal" class="white" data-toggle="modal"><i class="fa fa-sign-in"></i> {{'Konekte'|trans:lg_ch}}</a> <br>
+	      			{{'Ou pa gen kont'|trans:lg_ch}} ? , <a href="#enskripsyonModal" class="white" data-toggle="modal"><i class="fa fa-user-plus"></i> {{'Enskri'|trans:lg_ch}}</a>
+	      			{% endif %}
+	      		</div>
+
+	      		<div class="col-xs-4 right" style="margin-top: 17px">
+	      			{% if lg_ch == 'FR' %}
+	      			<a href="{% url 'changeLanguage' %}?next={{request.path}}&lg=HT" class="white" style="margin-top:10px;"><i class="fa fa-language"></i> Traduire en créole</a>
+	      			{% else %}
+	      			<a href="{% url 'changeLanguage' %}?next={{request.path}}&lg=FR" class="white" style="margin-top:10px;"><i class="fa fa-language"></i> Tradwi an franse</a>
+	      			{% endif %}
+	      		</div>
+	      	</div>
+	      	<div class="overlay" style="height: 100%;width: 100%;background-color: rgba(0,0,0,0.6);position: fixed;top: 0;left: 0;display: none;z-index: 3">
+	      	</div>
+	      	<div class="row police" style="background-color: #355E3B;height: 100%;width:45%;z-index: 4;position: absolute;top:0;padding: 10px;left:-1000px">
+	      		{% if request.user.is_authenticated %}
+	      		<div class="media">
+					<span class="pull-left">
+						{% if request.user.get_profile.photo %}
+						<img src="{{request.user.get_profile.photo.url}}" style="height: 68px;width: 68px" class="">
+						{% else %}
+						<span class="media-object fa fa-user fa-2x"></span>
+						{% endif %}
+					</span>
+					<div class="media-body">
+						<h3 class="media-heading"><b>{{request.user.first_name}} {{request.user.last_name}}</b></h3>
+						<p class="white f-11">{{request.user.last_login}}</p>
+						<a href="#" class="white f-11"><i class="fa fa-edit"></i> {{"Modifye"|trans:lg_ch}}</a>
+					</div>
+				</div>
+				{% else %}
+				<div class="row">
+				</div>
+				{% endif %}
+	      		<hr>
+	      		<span class="pointer close-police" style="position: absolute;right: 5px;top: 5px;">&times;</span>
+	      		<h4><a href="/" class="white" style="text-decoration:none"><i class="fa fa-home"></i> {{'Paj akèy'}} </a><br><br></h4>
+	      		<h4><a href="{% url 'pregnant' %}" class="white" style="text-decoration:none"><i class="fa fa-female"></i> {{"Mwen ansent"|trans:lg_ch}} </a><br><br></h4>
+	      		<h4><a href="{% url 'contraception' %}" class="white" style="text-decoration:none"><span class="fa fa-medkit"></span> {{"Kontrasepsyon"|trans:lg_ch}} </a><br><br></h4>
+	      		<h4><a href="#" class="white" style="text-decoration:none"><span class="fa fa-user-md"></span> {{"Jwenn yon èd"|trans:lg_ch}} </a><br><br></h4>
+	      		<h4><a href="{% url 'hopitauxProches' %}" class="white" style="text-decoration:none"><i class="fa fa-building-o"></i> {{'Lopital ki pwòch'|trans:lg_ch}} </a><br><br></h3>
+	      		<h4><a href="#" class="white" style="text-decoration:none"><i class="fa fa-book"></i> {{'Istwa nou'|trans:lg_ch}} </a><br><br></h3>
+	      		{% if user.is_authenticated %}
+	      		<h4><a href="{% url 'logout' %}" class="white" style="text-decoration:none"><i class="glyphicon glyphicon-off"></i> {{'Dekonekte'|trans:lg_ch}} </a><br><br></h3>
+	      		{% endif %}
+	      	</div>	
+	    </div>
+		{% endblock %}
+
+
+		{% block image %}
+		{% endblock %}
+
+		{% block body %}
+		{% endblock %}
+
+		{% block notification %}
+		{% endblock %}
+		
+		{% block footer %}
+		<div class="container-fluid center" style="position: fixed;bottom: 0;left: 35%">
+			<div class="row">
+				<div class="col-xs-12 center">
+					i7 copyright &copy 2017
+				</div>
+			</div>
+		</div>
+		{% endblock %}
+
+		
+		{% if messages %}
+			{% for msg in messages %}
+				<div class="nots bg-{{msg.tags}} center text-agv" style=";opacity:1;border:solid 1px #aaa;box-shadow: 1px 10px 10px 2px;padding:10px;height: auto;width: 700px;position: fixed;top: -542px;left: 50%;transform:translate(-50%,-50%);z-index: 9999">				
+					<div class="row left">
+						<div class="col-sm-2">
+							<i class="fa fa-bell-o fa-4x text-{{msg.tags}}"></i>
+						</div>
+						<div class="col-sm-10">
+							<i class="fa fa-info text-{{msg.tags}}" aria-hidden='true'></i> - {{msg|safe}}
+						</div>
+					</div>	
+				</div>
+			{% endfor %}
+		{% endif %}		
+		
+		
+		<!-- ICI LES MODALES -->
+		<div class="modal fade" id="KoneksyonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<form action="{% url 'loginView' %}?next={{request.path}}" method="post" class="modal-content"> {% csrf_token %}
+					<div class="modal-header center">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel"><i class="fa fa-sign-in"></i> {{'Koneksyon'|trans:lg_ch}}</h4>
+					</div>
+					<div class="modal-body">
+						<input type="text" class="form-control no-radius koneksyon-input" name="username" placeholder="{{'Non itilize'|trans:lg_ch}}">
+						<br>
+						<input type="password" class="form-control no-radius koneksyon-input" name="password" placeholder="{{'Modpas'|trans:lg_ch}}">
+					</div>
+					<div class="modal-footer center">
+						<div class="row">
+							<section class="col-xs-6">
+								<button type="button" class="btn btn-success no-radius btn-block" data-dismiss="modal"><i class="fa fa-close"></i> {{'Fèmen'|trans:lg_ch}}</button>
+							</section>
+							<section class="col-xs-6">
+								<button id="login-form" type="button" class="btn btn-success no-radius btn-block"><i class="fa fa-sign-in"></i> {{'Konekte'|trans:lg_ch}}</button>
+							</section>
+						</div>
+						<hr>
+						<div class="row">
+							<section class="col-xs-12 left">
+								{{'Si ou pa ko gen kont'|trans:lg_ch}}, <a class="pointer" id="enskri_"> {{'enskri'|trans:lg_ch}}</a>
+							</section>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- ou vle fe timoun
+
+pouw arive fe timoun , dabo kisa sa vle di?
+
+depiw yon jen fi arive nan laj de pibete ou arive gen reg ou an mezi pouw fe timoun. pou yon timoun fet fok gen sa ke yo rele rapo seksyel lan, kote jem fiy an ki se ovil  lan rankontre avek jem gason an ki se spem nan pou li arive bay lavi ak yon timoun. -->
+		<div class="modal fade" id="enskripsyonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<form action="?next={{request.path}}" method="post" class="modal-content"> {% csrf_token %}
+					<div class="modal-header center">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel"><i class="fa fa-user-plus"></i> {{'Enskripsyon'|trans:lg_ch}}</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-xs-6">
+								<input type="text" class="form-control no-radius" name="first_name" placeholder="{{'non'|trans:lg_ch}}">
+							</div>
+							<div class="col-xs-6">
+								<input type="text" class="form-control no-radius" name="last_name" placeholder="{{'siyati'|trans:lg_ch}}">
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-xs-6">
+								<input type="text" class="form-control no-radius" name="dat_nesans" placeholder="jj/mm/aaaa">
+							</div>
+							<div class="col-xs-6">
+								<select name="sex" class="form-control no-radius sex">
+									<option value="">-- {{'Sèks ou'|trans:lg_ch}} -- </option>
+									<option value="F">{{'Femèl'|trans:lg_ch}}</option>
+									<option value="M">{{'Mal'|trans:lg_ch}}</option>
+								</select>
+							</div>
+						</div>
+						<br class="si-se-fanm" style="display: none">
+						<div class="row si-se-fanm" style="display: none">
+							<div class="col-xs-6">
+								<select name="cycle" class="form-control no-radius cycle">
+									<option value="">-- {{'Ki sik ou'|trans:lg_ch}} --</option>
+									<option value="24">24</option>
+									<option value="25">25</option>
+									<option value="26">26</option>
+									<option value="27">27</option>
+									<option value="28">28</option>
+									<option value="29">29</option>
+									<option value="30">30</option>
+									<option value="31">31</option>
+								</select>
+								<!-- <input type="checkbox" name="mpakonnen" id="sikmwen"> <span class="text-info f-11">{{'Mwen pa konnen sik mwen'|trans:lg_ch}}</span> -->
+							</div>
+						</div>
+						<br>
+						<!-- <div class="row">
+							<div class="col-xs-12">
+								<span class="text-success" style="font-size: 12px;">Ba nou dat reg ou te fini nan 2 denye mwa</span>
+							</div>
+							<div class="col-xs-6">
+								<input type="text" class="form-control no-radius" name="dat_nesans" placeholder="jj/mm/aaaa">
+							</div>
+							<div class="col-xs-6">
+								<input type="text" class="form-control no-radius" name="dat_nesans" placeholder="jj/mm/aaaa">
+							</div>
+						</div>
+						<br> -->
+						<div class="row">
+							<div class="col-xs-6">
+								<input type="password" class="form-control no-radius" name="password_enskri" placeholder="{{'Modpas'|trans:lg_ch}}">
+							</div>
+							<div class="col-xs-6">
+								<input type="password" class="form-control no-radius" name="password_enskri_konfim" placeholder="{{'Konfime modpas la'|trans:lg_ch}}">
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer center">
+						<div class="row">
+							<section class="col-xs-6">
+
+								<button type="button" class="btn btn-success no-radius btn-block" data-dismiss="modal"><i class="fa fa-close"></i> {{'Fèmen'|trans:lg_ch}}</button>
+							</section>
+							<section class="col-xs-6">
+								<button type="button" id="signup-form" class="btn btn-success no-radius btn-block"><i class="fa fa-send"></i> {{'Enskri'|trans:lg_ch}}</button>
+							</section>
+						</div>
+						<hr>
+						<div class="row">
+							<section class="col-xs-12 left">
+								{{'Ou gen yon kont deja'|trans:lg_ch}} ?, <a class="pointer" id="konekte_">{{'Konekte'|trans:lg_ch}}</a>
+							</section>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		 
+		<script type="text/javascript" src="{% static 'js/jquery-1.12.2.min.js' %}"></script>
+    	<script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    	<script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+
+    	<script type="text/javascript">
+    		//
+
+    		$("#konekte_").click(function(){
+    			$("#enskripsyonModal").modal("hide");
+    			$("#KoneksyonModal").modal("show");
+    		});
+    		$("#enskri_").click(function(){
+    			$("#KoneksyonModal").modal("hide");
+    			$("#enskripsyonModal").modal("show");
+    		});
+
+			$police = $('.police');
+			$overlay = $('.overlay');
+			$('#icon-bar').click(function(){
+				$police.animate({"left":"12px"}, "fast")
+				$overlay.fadeToggle(500);
+			});
+			$('.close-police').click(function(){
+				//var left = $police.offset().left;  // Get the calculated left position
+				$police.animate({"left":"-1000px"}, "slow");  // Set the left to its calculated positio
+				$overlay.fadeToggle(500);
+			});
+
+			$overlay.click(function(){
+				$police.animate({"left":"-1000px"}, "slow");  // Set the left to its calculated positio
+				$(this).fadeToggle(500);
+			});
+
+			$(document).on('keypress','.koneksyon-input',function(e){
+				if(e.which == 13){
+					$('#login-form').click();
+				}
+				
+			});
+			$(document).on('change','.sex',function(e){
+				if($(this).val() == "F"){
+					$('.si-se-fanm').show();
+				}else{
+					$('.si-se-fanm').hide();
+				}
+			});
+
+
+			$('#login-form').click(function(){
+				$.ajax({
+				    type:'POST',
+				    url:"{% url 'loginView' %}",
+				    data:{
+				        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+				        username:$("input[name=username]").val(),
+				        password:$("input[name=password]").val(),
+				    },
+				    success:function(result){
+				    	
+				      	$.each(result,function (key, error) {
+							if(error){
+								alert('{{"Itilizatè enkoni"|trans:lg_ch}}');
+								$("input[name=username]").focus();
+							}else{
+								window.location.href = "";
+							}
+				      	});
+				    },
+				});
+			});
+			$('#signup-form').click(function(){
+				var last_name = $("input[name=first_name]").val();
+				var first_name = $("input[name=last_name]").val();
+		        var password = $("input[name=password_enskri]").val();
+		        var password_confirm = $("input[name=password_enskri_konfim").val();
+		        var sex = $(".sex").val();
+		        var birthday = $("input[name=brithday").val();
+
+		        if(first_name != "" && last_name != "" && password != "" && password_confirm != "" && sex != "" && birthday != ""){
+		        	if(password == password_confirm){
+						$.ajax({
+						    type:'POST',
+						    url:"{% url 'signupView' %}",
+						    data:{
+						        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+						       	first_name:first_name,
+						       	last_name:last_name,
+								password:password,
+								password_confirm:password_confirm,
+								sex:sex,
+								birthday:birthday,
+						    },
+						    success:function(result){
+						    	
+						      	$.each(result,function (key, error) {
+									if(error){
+										alert('{{"Itilizatè enkoni"|trans:lg_ch}}');
+										$("input[name=username]").focus();
+									}else{
+										window.location.href = "";
+									}
+						      	});
+						    },
+						});
+					}else{
+						alert("{{'Modpas yo pa menm'|trans:lg_ch}}")
+					}
+				}else{
+					alert("{{'Tout chan yo obligatwa'|trans:lg_ch}}")
+				}
+			});
+             
+    	</script>
+
+    	{% block script %}
+    		
+    	{% endblock %}
+  	</body>
+</html>

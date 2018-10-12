@@ -1,0 +1,87 @@
+@font-face{
+  font-family: 'san-francisco';
+  src:url("../bootstrap/fonts/system-san-francisco-display-ultralight.ttf");
+}
+@font-face{
+  font-family: 'century-gothic';
+  src:url("../bootstrap/fonts/century-gothic.ttf");
+}
+@font-face{
+  font-family: 'canela';
+  src:url("../bootstrap/fonts/canela.ttf");
+}
+
+.middle { 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.fly .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .btn > .fly{
+  color: #03132C;  /*Sets the text hover color on navbar*/
+  background-color:gray;
+}
+
+.fly .navbar-nav > .active > a, .navbar-fly .navbar-nav > .active >   
+a:hover, .navbar-fly .navbar-nav > .active > a:focus {
+  color: black; /*BACKGROUND color for active*/
+  background-color:white;
+}
+.dropdown-menu > li > a:hover,.dropdown-menu > li > a:focus {
+  color: rgb(8,64,8);
+  text-decoration: none;
+  background-color: gray;  /*change color of links in drop down here*/
+}
+
+.nav > li > a:hover,.nav > li > a:focus {
+  text-decoration: none;
+  background-color: silver; /*Change rollover cell color here*/
+}
+
+.fly .navbar-nav > li > a {
+ color: white; 
+}
+.fly{
+  background-color: green
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.bold{
+  font-weight: bold;
+}
+.underline{
+  text-decoration: underline;
+}
+
+a:hover{
+  color: yellow;
+  text-decoration:none;
+}
+.f-11{
+  font-size: 11px
+}
+
+.italic{
+  font-style: italic;
+}
+
+.no-radius{
+  border-radius: 0;
+}
+
+.center{
+  text-align: center;
+}
+.left{
+  text-align: left;
+}
+.right{
+  text-align: right;
+}
+
+.white{
+  color: white
+  }

@@ -1,0 +1,84 @@
+{% extends 'main.html' %}
+{% load static translator %}
+
+{% block title %}
+{{'Paj akèy'|trans:lg_ch}}
+{% endblock %}
+
+{% block body %}
+
+
+<div class="inner-banner-agileits-w3layouts">
+</div>
+<!-- //banner -->
+<!-- breadcrumbs -->
+<div class="w3l_agileits_breadcrumbs">
+   <div class="container">
+		<div class="w3l_agileits_breadcrumbs_inner">
+			<ul>
+				<li><a href="/">Home</a><span>«</span></li>
+									
+				<li>Appointment</li>
+				</ul>
+		</div>
+	</div>
+</div>		
+<!-- //breadcrumbs -->
+<!-- Appointment -->
+<div class="appointment">
+   <div class="container">
+	<div class="form-agileits">
+	<h3>{{'Pran yon randevou'|trans:lg_ch}}</h3>
+	<form action="#" method="post">
+		<input  class="name" type="text" name="Patient Name" placeholder="{{'non konplè'|trans:lg_ch}}" required=""/>
+		<input type="text" name="Number" placeholder="{{'Nimewo'|trans:lg_ch}}" required=""/>
+		<input type="text" name="Number" placeholder="{{'Nimewo'|trans:lg_ch}}" required=""/>
+		<input class="name" type="email" name="Email" placeholder="{{'Imel'|trans:lg_ch}}" required=""/>
+		<input  id="datepicker1" name="Text" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" placeholder="mm/jj/aaaa" required="">
+		<select class="form-control name" placeholder="">
+			<option>{{'Ki pati'|trans:lg_ch}} ?</option>
+			<option>Cardiology</option>
+			<option>Ophthalmology</option>
+			<option>Neurology</option>
+			<option>Psychology</option>
+			<option>Dermatology</option>
+		</select>
+		<select class="form-control">
+			<option>{{"Sèks"|trans:lg_ch}}</option>
+			<option>{{'Mal'|trans:lg_ch}}</option>
+			<option>{{'Femèl'|trans:lg_ch}}</option>
+		</select>
+		<br><br>
+		 <input type="submit" value="{{'Voye li ale'|trans:lg_ch}}">
+	</form>
+	</div>
+	<div class="timings-w3ls">
+							<h5>{{'Ki jou'|trans:lg_ch}}</h5>
+							<ul>
+								<li>Pediatric <span>Dim-Lun</span></li>
+								<li>Gynaecology<span>Mer-Vend</span></li>
+								<li>Cardiac<span>Sam-Lun</span></li>
+							</ul>
+	</div>
+	<div class="w3ls-location">
+		<a href="locations.html">{{"Lokalize"|trans:lg_ch}}</a>
+	</div>
+	</div>
+	
+	<div class="clearfix"> </div>
+</div>
+
+<!-- //Doctors --> 
+<!--social-icons-->
+
+<!-- //footer -->
+{% endblock%}
+
+
+{% block script %}
+	<script type="text/javascript">
+		$(".box-menu").click(function(){
+			window.location.href = $(this).data('href');
+		});
+	</script>
+{% endblock %}

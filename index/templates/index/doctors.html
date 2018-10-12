@@ -1,0 +1,103 @@
+{% extends 'main.html' %}
+{% load static translator %}
+
+{% block title %}
+{{'Paj akèy'|trans:lg_ch}}
+{% endblock %}
+
+{% block body %}
+
+
+<div class="inner-banner-agileits-w3layouts">
+</div>
+<!-- //banner -->
+<!-- breadcrumbs -->
+<div class="w3l_agileits_breadcrumbs">
+   <div class="container">
+		<div class="w3l_agileits_breadcrumbs_inner">
+			<ul>
+				<li><a href="/">Home</a><span>«</span></li>
+									
+				<li>Doctors</li>
+				</ul>
+		</div>
+	</div>
+</div>		
+<!-- //breadcrumbs -->
+<!-- Doctors -->
+<div class="blog" id="blog">
+	<div class="container">
+	<h4 class="tittle-w3layouts">{{'Rankontre doktè nou yo'|trans:lg_ch}}</h4>
+		<div class="blog-grid-w3-agileits">
+			<div class="blog-img1-agileits-w3layouts">
+			</div>
+			<div class="blog-info-w3layouts">
+				<h6>Dr. Julia Jameson</h6>
+				<div class="inner-info">
+					<h3>Pediatrist</h3>
+					<p class="para-wthree">Aenean pulvinar diam vel felis volutpat dictum. Aenean ac tellus suscipit sapien scelerisque tempus non mollis massa.</p>
+				</div>
+				<a href="single.html"class="blog-more-agile" >{{'Konnen plis'|trans:lg_ch}}</a>
+			
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="blog-grid-w3-agileits">
+			<div class="blog-img2-agileits-w3layouts">
+			</div>
+			<div class="blog-info-w3layouts">
+				<h6>Dr. Joseph JUlie</h6>
+				<div class="inner-info">
+					<h3>Cardiologist</h3>
+					<p class="para-wthree">Aenean pulvinar diam vel felis volutpat dictum. Aenean ac tellus suscipit sapien scelerisque tempus non mollis massa.</p>
+				</div>
+				<a href="single.html"class="blog-more-agile" >{{'Konnen plis'|trans:lg_ch}}</a>
+			
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="blog-grid-w3-agileits">
+			<div class="blog-info-w3layouts second-info">
+				<h6>Dr. Jean Gardy Bien-Aime</h6>
+				<div class="inner-info">
+					<h3>Faculty Physician</h3>
+					<p class="para-wthree">Aenean pulvinar diam vel felis volutpat dictum. Aenean ac tellus suscipit sapien scelerisque tempus non mollis massa.</p>
+				</div>
+				<a href="single.html"class="blog-more-agile" >{{'Konnen plis'|trans:lg_ch}}</a>
+			
+			</div>
+			<div class="blog-img3-agileits-w3layouts">
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="blog-grid-w3-agileits">
+			<div class="blog-info-w3layouts second-info">
+				<h6>Dr. Lacy Smith</h6>
+				<div class="inner-info">
+					<h3> Anesthetist </h3>
+					<p class="para-wthree">Aenean pulvinar diam vel felis volutpat dictum. Aenean ac tellus suscipit sapien scelerisque tempus non mollis massa.</p>
+				</div>
+				<a href="single.html"class="blog-more-agile" >{{'Konnen plis'|trans:lg_ch}}</a>
+			
+			</div>
+			<div class="blog-img4-agileits-w3layouts">
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+
+<!-- //Doctors --> 
+<!--social-icons-->
+
+<!-- //footer -->
+{% endblock%}
+
+
+{% block script %}
+	<script type="text/javascript">
+		$(".box-menu").click(function(){
+			window.location.href = $(this).data('href');
+		});
+	</script>
+{% endblock %}

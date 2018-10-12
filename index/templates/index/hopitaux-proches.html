@@ -1,0 +1,146 @@
+{% extends 'main.html' %}
+{% load static translator %}
+
+{% block title %}
+{{'Lopital ki pwòch'|trans:lg_ch}}
+{% endblock %}
+
+{% block body %}
+
+<div class="inner-banner-agileits-w3layouts">
+</div>
+<!-- //banner -->
+<!-- breadcrumbs -->
+<div class="w3l_agileits_breadcrumbs">
+   <div class="container">
+		<div class="w3l_agileits_breadcrumbs_inner">
+			<ul>
+				<li><a href="/">Home</a><span>«</span></li>
+									
+				<li>{{'Lopital ki pwòch'|trans:lg_ch}}</li>
+				</ul>
+		</div>
+	</div>
+</div>		
+<!-- //breadcrumbs -->
+<!-- locations -->
+<div class="locations-w3-agileits">
+	<div class="container">
+	<div class="location-agileits">
+		<div class="loc-left">
+			<h4> Port-au-Prince, Haiti:</h4>
+			<p>OFATMA</p>
+			<p>Port-au-Prince, Haiti</p>
+			<p>Telephone : +509 46 40 0324</p>
+			<p>Email : <a href="mailto:example@email.com">info@ofatma.com</a></p>
+		</div>
+		<div class="loc-right">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15132.396180945947!2d-72.2830787!3d18.5244258!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1842fa504365018e!2sOFATMA!5e0!3m2!1sen!2s!4v1492974987418" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+	<div class="location-agileits">
+		
+		<div class="loc-right">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15131.071891610307!2d-72.3401777!3d18.5393845!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x97b23e6bfb1a5691!2sState+University+of+Haiti+Hospital!5e0!3m2!1sen!2s!4v1492974824469" frameborder="0" style="border:0" allowfullscreen></iframe>
+		</div>
+		<div class="loc-left">
+			<h4>Port-au-Prince, Haiti</h4>
+			<p>Hospital General</p>
+			<p>Telephone : +509 3059 6035</p>
+			<p>FAX : +1 500 889 5432</p>
+			<p>Email : <a href="mailto:example@email.com">mail@example.com</a></p>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+	<div class="location-agileits">
+		<div class="loc-left">
+			<h4>Canape Vert :</h4>
+			<p>Université Hospital</p>
+			<p>4056 Basel, Port-au-Prince</p>
+			<p>Telephone : +509 340 544 6035</p>
+			<p></p>
+			<p>Email : <a href="mailto:example@email.com">mail@example.com</a></p>
+		</div>
+		<div class="loc-right">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.8976611884714!2d-72.31872943510709!3d18.53352623740138!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eb9e7e48bed8bb9%3A0x2b8a4fd9c95856c0!2sTotal+Canape+Vert%2C+Port-au-Prince%2C+Haiti!5e0!3m2!1sen!2s!4v1492975309948" frameborder="0" style="border:0" allowfullscreen></iframe>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+	</div>
+</div>
+<!-- //locations --> 
+<!--social-icons-->
+
+{% endblock %}
+{% block script %}
+	<script type="text/javascript">
+		var lat = 19.0497283; // Latitude par defaut
+		var lng = -73.1524883; // Longitude par defaut
+		//var homeLatLng = new google.maps.LatLng(lat,lng); // coordonnee pour centrer la carte
+		var infowindow;
+		var map;
+
+		function initialize(query='all'){
+			var file = new Array();
+			$.ajax({
+			    type:'GET',
+			    url:"{% url 'getDataForMap' %}",
+			    data:{
+			        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+			        val:query,
+			    },
+			    error:function(result){
+			    	var myOptions = {
+						center: new google.maps.LatLng(lat,lng),
+						zoom: 8,
+						mapTypeId: google.maps.MapTypeId.ROADMAP // Le type de map
+					};
+					map = new google.maps.Map(document.getElementById('map-canvas'), myOptions);
+			      	$.each(result,function (key, value) {
+				      	file.push(value)
+						//alert(file[0].categorie)
+						if(file){
+							for(var t = 0; t<file.length; t++){
+
+								var latlng = new google.maps.LatLng(parseFloat(file[t].lat),
+						        parseFloat(file[t].lng));
+						        var titre = file[t].ville;
+						        var categorie = file[t].categorie+'.png';
+						        var description = file[t].description;
+						        marker = createMarker(description, latlng, titre, categorie);
+
+							}
+						}
+			      	});
+			    },
+			});
+
+
+		}
+
+		function createMarker(description, latlng, titre, categorie) {
+		    var marker = new google.maps.Marker({
+		    	position: latlng,
+		    	map: map,
+		    	title: titre,
+		    	icon: "/static/img/"+categorie  , 	
+		    });
+
+		   //fonction pour clic sur marker
+
+		    google.maps.event.addListener(marker, "click", function() {
+
+		      if (infowindow) infowindow.close();
+		      infowindow = new google.maps.InfoWindow({content: description});
+		      infowindow.open(map, marker);
+		    });
+		    return marker;
+		}
+		//google.maps.event.addDomListener(window, 'load', initialize);
+
+		$(document).ready(function(){
+			initialize();
+		});
+	</script>
+{% endblock %}

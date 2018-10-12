@@ -1,0 +1,564 @@
+/* Handler CSS Version 1.0 */
+/* Designed by Le-mayzeur ; rynnika@gmail.com */
+
+
+/*Sets the text hover color on navbar*/
+.bd .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .btn > .bd{
+    color: #03132C;
+    background-color:#B0C4DE;
+}
+
+/*BACKGROUND color for active*/
+.bd .navbar-nav > .active > a, .navbar-bd .navbar-nav > .active >   
+ a:hover, .navbar-bd .navbar-nav > .active > a:focus {
+    color: rgb(231,192,103);
+    background-color:#A8A8d7;
+}
+
+/*change color of links in drop down here*/
+.dropdown-menu > li > a:hover,.dropdown-menu > li > a:focus {
+    color: rgb(8,64,8);
+    text-decoration: none;
+    background-color: gray;
+}
+
+/*Change rollover cell color here*/
+.nav > li > a:hover,.nav > li > a:focus {
+    text-decoration: none;
+    background-color: silver;
+}
+
+
+/* The color of the navbar */
+.bd {
+    background-color:#0D1D31;
+    width: 100%;
+}
+
+/* The settings of the navbar text */
+.bd .navbar-nav > li > a {
+   color: #C4BC96; 
+   font-weight: bold;
+}
+
+.red{
+	color:red;
+}
+.bg-red{
+	background-color:red;
+}
+.gray{
+	color:gray;
+}
+.bg-gray{
+	background-color:gray;
+}
+.blue{
+	color:blue;
+}
+.bg-blue{
+	background-color:blue;
+}
+.green{
+	color:green;
+}
+.bg-green{
+	background-color:green;
+}
+.white{
+	color:white;
+}
+.bg-white{
+	background-color:white;
+}
+.yellow{
+	color:yellow;
+}
+.bg-yellow{
+	background-color:yellow;
+}
+.black{
+	color:black;
+}
+.bg-black{
+	background-color:black;
+}
+.middle { 
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%,-50%);
+  	position: absolute;
+}
+
+.center{
+	text-align: center;
+}
+.left{
+	text-align: left;
+}
+.right{
+	text-align: right;
+}
+
+.no-radius{
+	border-radius: 0;
+}
+
+.space-15{
+  	letter-spacing: 1.5px;
+}
+
+.space-25{
+  	letter-spacing: 2.5px;
+}
+.space-35{
+  	letter-spacing: 3.5px;
+}
+
+.none-style{
+	text-decoration:none;
+}
+
+.pointer{
+	cursor:pointer;
+}
+
+.muted-1{
+  	color: #ddd;
+}
+
+.muted-2{
+  	color: #ccc;
+}
+
+.muted-3{
+  	color: #bbb;
+}
+
+.muted-4{
+  	color: #aaa;
+}
+
+.muted-5{
+  	color: #999;
+}
+
+
+.normal{
+  	font-weight: normal;
+}
+
+.bold{
+	font-weight: bold;
+}
+.underline{
+	text-decoration: underline;
+}
+
+.italic{
+	font-style: italic;
+}
+
+.upper{
+	text-transform: uppercase;
+}
+
+.lower{
+	text-transform: lowercase;
+}
+
+.capitalize{
+	text-transform: capitalize;
+}
+
+
+
+.col-xs-09, .col-sm-09, .col-md-09,	.col-lg-09,/* 11 Cells */
+.col-xs-18, .col-sm-18, .col-md-18,	.col-lg-18,/* 11 Cells */
+.col-xs-27, .col-sm-27, .col-md-27,	.col-lg-27,/* 11 Cells */
+.col-xs-36, .col-sm-36, .col-md-36,	.col-lg-36,/* 11 Cells */
+.col-xs-45, .col-sm-45, .col-md-45,	.col-lg-45,/* 11 Cells */
+.col-xs-54, .col-sm-54, .col-md-54,	.col-lg-54,/* 11 Cells */
+.col-xs-63, .col-sm-63, .col-md-63,	.col-lg-63,/* 11 Cells */
+.col-xs-72, .col-sm-72, .col-md-72,	.col-lg-72,/* 11 Cells */
+.col-xs-81, .col-sm-81, .col-md-81,	.col-lg-81,/* 11 Cells */
+.col-xs-20, .col-sm-20, .col-md-20,	.col-lg-20,/* 5 Cells */
+.col-xs-40, .col-sm-40, .col-md-40,	.col-lg-40,/* 5 Cells */
+.col-xs-60, .col-sm-60, .col-md-60,	.col-lg-60,/* 5 Cells */
+.col-xs-80, .col-sm-80, .col-md-80,	.col-lg-80,/* 5 Cells */
+.col-xs-14, .col-sm-14, .col-md-14, .col-lg-14,/* 7 Cells */
+.col-xs-28, .col-sm-28, .col-md-28, .col-lg-28,/* 7 Cells */
+.col-xs-42, .col-sm-42, .col-md-42, .col-lg-42,/* 7 Cells */
+.col-xs-71, .col-sm-71, .col-md-71, .col-lg-71,/* 7 Cells */
+.col-xs-85, .col-sm-85, .col-md-85, .col-lg-85 /* 7 Cells */
+{
+  	position: relative;
+  	min-height: 1px;
+  	padding-right: 10px;
+  	padding-left: 10px;
+}
+
+.col-xs-09{
+  	width: 9.09%;
+  	float: left;
+}
+.col-xs-18{
+  	width: 18.18%;
+  	float: left;
+}
+.col-xs-27{
+  	width: 27.27%;
+  	float: left;
+}
+.col-xs-36{
+  	width: 36.36%;
+  	float: left;
+}
+.col-xs-45{
+  	width: 45.45%;
+  	float: left;
+}
+.col-xs-54{
+  	width: 54.54%;
+  	float: left;
+}
+.col-xs-63{
+  	width: 63.63%;
+  	float: left;
+}
+.col-xs-72{
+  	width: 72.72%;
+  	float: left;
+}
+.col-xs-81{
+  	width: 81.81%;
+  	float: left;
+}
+.col-xs-90{
+  	width: 90.90%;
+  	float: left;
+}
+
+.col-xs-20{
+  	width: 20%;
+  	float: left;
+}
+.col-xs-40{
+  	width: 40%;
+  	float: left;
+}
+.col-xs-60{
+  	width: 60%;
+  	float: left;
+}
+.col-xs-80{
+  	width: 80%;
+  	float: left;
+}
+
+.col-xs-85{
+  	width: 85.68%;
+  	float: left;
+}
+
+.col-xs-71{
+  	width: 71.4%;
+  	float: left;
+}
+
+.col-xs-57{
+  	width: 57.12%;
+  	float: left;
+}
+.col-xs-42{
+  	width: 42.84%;
+  	float: left;
+}
+.col-xs-28{
+  	width: 28.56%;
+  	float: left;
+}
+.col-xs-14{
+  	width: 14.28%;
+  	float: left;
+}
+@media (max-width: 568px) { /* Phone screen */
+  
+}
+
+
+@media (min-width: 768px) { /* Tablette screen */
+	.col-sm-09{
+	  	width: 9.09%;
+	  	float: left;
+	}
+	.col-sm-18{
+	  	width: 18.18%;
+	  	float: left;
+	}
+	.col-sm-27{
+	  	width: 27.27%;
+	  	float: left;
+	}
+	.col-sm-36{
+	  	width: 36.36%;
+	  	float: left;
+	}
+	.col-sm-45{
+	  	width: 45.45%;
+	  	float: left;
+	}
+	.col-sm-54{
+	  	width: 54.54%;
+	  	float: left;
+	}
+	.col-sm-63{
+	  	width: 63.63%;
+	  	float: left;
+	}
+	.col-sm-72{
+	  	width: 72.72%;
+	  	float: left;
+	}
+	.col-sm-81{
+	  	width: 81.81%;
+	  	float: left;
+	}
+	.col-sm-90{
+		width: 90.90%;
+		float: left;
+	}
+	.col-sm-20{
+	    width: 20%;
+	    float: left;
+	}
+	.col-sm-40{
+	    width: 40%;
+	    float: left;
+	}
+	.col-sm-60{
+	    width: 60%;
+	    float: left;
+	}
+	.col-sm-80{
+	    width: 80%;
+	    float: left;
+	}
+	.col-sm-85{
+	    width: 85.68%;
+	    float: left;
+	}
+
+	.col-sm-71{
+	    width: 71.4%;
+	    float: left;
+	}
+
+	.col-sm-57{
+	    width: 57.12%;
+	    float: left;
+	}
+	.col-sm-42{
+	    width: 42.84%;
+	    float: left;
+	}
+	.col-sm-28{
+	    width: 28.56%;
+	    float: left;
+	}
+	.col-sm-14{
+		width: 14.28%;
+	    float: left;
+	}
+
+}
+@media (min-width: 992px) {
+	.col-md-09{
+	  	width: 9.09%;
+	  	float: left;
+	}
+	.col-md-18{
+	  	width: 18.18%;
+	  	float: left;
+	}
+	.col-md-27{
+	  	width: 27.27%;
+	  	float: left;
+	}
+	.col-md-36{
+	  	width: 36.36%;
+	  	float: left;
+	}
+	.col-md-45{
+	  	width: 45.45%;
+	  	float: left;
+	}
+	.col-md-54{
+	  	width: 54.54%;
+	  	float: left;
+	}
+	.col-md-63{
+	  	width: 63.63%;
+	  	float: left;
+	}
+	.col-md-72{
+	  	width: 72.72%;
+	  	float: left;
+	}
+	.col-md-81{
+	  	width: 81.81%;
+	  	float: left;
+	}
+	.col-md-90{
+	  	width: 90.90%;
+	  	float: left;
+	}
+  	.col-md-20{
+    	width: 20%;
+    	float: left;
+  	}
+  	.col-md-40{
+    	width: 40%;
+    	float: left;
+  	}
+  	.col-md-60{
+    	width: 60%;
+    	float: left;
+  	}
+  	.col-md-80{
+    	width: 80%;
+    	float: left;
+  	}
+  	.col-md-85{
+    	width: 85.68%;
+    	float: left;
+  	}
+
+  	.col-md-71{
+    	width: 71.4%;
+    	float: left;
+  	}
+
+  	.col-md-57{
+    	width: 57.12%;
+    	float: left;
+  	}
+  	.col-md-42{
+    	width: 42.84%;
+    	float: left;
+  	}
+  	.col-md-28{
+    	width: 28.56%;
+    	float: left;
+  	}
+  	.col-md-14{
+    	width: 14.28%;
+    	float: left;
+  	}
+
+}
+
+@media (min-width: 1200px) {
+	.col-lg-09{
+	  	width: 9.09%;
+	  	float: left;
+	}
+	.col-lg-18{
+	  	width: 18.18%;
+	  	float: left;
+	}
+	.col-lg-27{
+	  	width: 27.27%;
+	  	float: left;
+	}
+	.col-lg-36{
+	  	width: 36.36%;
+	  	float: left;
+	}
+	.col-lg-45{
+	  	width: 45.45%;
+	  	float: left;
+	}
+	.col-lg-54{
+	  	width: 54.54%;
+	  	float: left;
+	}
+	.col-lg-63{
+	  	width: 63.63%;
+	  	float: left;
+	}
+	.col-lg-72{
+	  	width: 72.72%;
+	  	float: left;
+	}
+	.col-lg-81{
+	  	width: 81.81%;
+	  	float: left;
+	}
+	.col-lg-90{
+	  	width: 90.90%;
+	  	float: left;
+	}
+  	.col-lg-20{
+    	width: 20%;
+    	float: left;
+  	}
+  	.col-lg-40{
+    	width: 40%;
+    	float: left;
+  	}
+  	.col-lg-60{
+    	width: 60%;
+    	float: left;
+  	}
+  	.col-lg-80{
+    	width: 80%;
+    	float: left;
+  	}
+
+  	.col-lg-85{
+    	width: 85.68%;
+    	float: left;
+  	}
+
+  	.col-lg-71{
+    	width: 71.4%;
+    	float: left;
+  	}
+
+  	.col-lg-57{
+    	width: 57.12%;
+    	float: left;
+  	}
+  	.col-lg-42{
+    	width: 42.84%;
+    	float: left;
+  	}
+  	.col-lg-28{
+    	width: 28.56%;
+    	float: left;
+  	}
+  	.col-lg-14{
+    	width: 14.28%;
+    	float: left;
+  	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

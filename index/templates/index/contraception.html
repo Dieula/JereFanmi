@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static translator %}
+
+{% block title %}
+{{'Kontrasepsyon'|trans:lg_ch}}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+	<br>
+	
+	<div class="row">
+		<div class="col-xs-12 center">
+			<img src="{% static 'img/3.jpg' %}" style="height: 150px;">
+		</div>
+	</div>
+	<br>
+	<h3 class="center">{{'Kontrasepsyon'|trans:lg_ch}}</h3>
+	{% if user.is_authenticated %}
+	<div class="row">
+		<div class="col-xs-12 center">
+			<a href="{% url 'contraceptionDetails' %}?rd={{request.user.gender}}" class="center btn btn-success btn-lg no-radius">{{'Konnen plis'|trans:lg_ch}}</a>
+		</div>
+	</div>
+	<hr>
+	{% else %}
+	<hr>
+	<div class="row">
+		<div class="col-xs-6 center">
+			<a href="{% url 'contraceptionDetails' %}?rd=F" class="btn btn-success btn-lg no-radius"><i class="fa fa-female"></i> {{'Pou fanm'|trans:lg_ch}}</a>
+		</div>
+		<div class="col-xs-6 center">
+			<a href="{% url 'contraceptionDetails' %}?rd=M" class="btn btn-success btn-lg no-radius"><i class="fa fa-user"></i> {{'Pou gason'|trans:lg_ch}}</a>
+		</div>
+	</div>
+	{% endif %}
+</div>
+{% endblock %}
+
+{% block script %}
+	<script type="text/javascript">
+		$(".box-menu").click(function(){
+			window.location.href = $(this).data('href');
+		});
+	</script>
+{% endblock %}
